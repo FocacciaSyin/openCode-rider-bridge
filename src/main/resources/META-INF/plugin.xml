@@ -1,0 +1,12 @@
+<idea-plugin>
+  <id>com.github.opencode.rider-context</id>
+  <name>OpenCode Rider Context</name>
+  <vendor>OpenCode</vendor>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <projectService serviceImplementation="com.github.opencode.rider.OpencodeContextProjectService" />
+    <postStartupActivity implementation="com.github.opencode.rider.OpencodeContextStartupActivity" />
+  </extensions>
+</idea-plugin>
