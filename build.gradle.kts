@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.intellij.platform")
+    kotlin("jvm") version "2.0.21"
 }
 
 group = "com.github.opencode"
@@ -11,11 +12,26 @@ java {
     }
 }
 
+kotlin {
+    jvmToolchain(21)
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    sourceCompatibility = "21"
+    targetCompatibility = "21"
+}
+
 dependencies {
     intellijPlatform {
         rider("2024.3.1")
     }
     implementation("org.java-websocket:Java-WebSocket:1.5.7")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:2.0.21")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.11.0")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 intellijPlatform {
@@ -29,4 +45,8 @@ intellijPlatform {
             untilBuild = "261.*"
         }
     }
+}
+
+tasks.test {
+    useJUnitPlatform()
 }
