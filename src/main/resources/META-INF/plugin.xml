@@ -4,9 +4,14 @@
   <vendor>OpenCode</vendor>
 
   <depends>com.intellij.modules.platform</depends>
+  <depends>com.intellij.modules.vcs</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <projectService serviceImplementation="com.github.opencode.rider.OpencodeContextProjectService" />
     <postStartupActivity implementation="com.github.opencode.rider.OpencodeContextStartupActivity" />
+    <checkinHandlerFactory implementation="com.github.opencode.rider.commit.OpenCodeCheckinHandlerFactory" />
+    <applicationConfigurable instance="com.github.opencode.rider.commit.OpenCodeCommitSettingsConfigurable"
+                             parentId="tools"
+                             displayName="OpenCode Commit Message" />
   </extensions>
 </idea-plugin>
